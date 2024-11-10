@@ -8,7 +8,7 @@ public class GameManager : Singleton<GameManager>
 {
     public BigInteger money = 0;
     public TextMeshProUGUI moneyValueLabel;
-    ParticleSystem _particleSystem;
+    public ParticleSystem _particleSystem;
 
     protected override void Awake()
     {
@@ -21,9 +21,4 @@ public class GameManager : Singleton<GameManager>
         moneyValueLabel.text = money.ToString();
     }
 
-    public void OnClick()
-    {
-        money++;
-        _particleSystem.Play();
-    }
 }
