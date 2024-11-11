@@ -5426,7 +5426,7 @@ GameObject:
   - component: {fileID: 1200225054}
   - component: {fileID: 1200225053}
   - component: {fileID: 1200225057}
-  - component: {fileID: 1200225058}
+  - component: {fileID: 1200225060}
   - component: {fileID: 1200225056}
   - component: {fileID: 1200225059}
   m_Layer: 3
@@ -5515,6 +5515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab570fa2b56c1ad4093eacd413f0bfb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  radius: 1.5
 --- !u!114 &1200225057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5545,41 +5546,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!58 &1200225058
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1200225052}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!114 &1200225059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5592,7 +5558,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 864f4c4b590b07848ac034efcb45486d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  autoClickInterval: 1
+  autoClickInterval: 50000
+--- !u!95 &1200225060
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1200225052}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 87cb9755c2932e54b8dcacb9bf99c3e2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1288759297
 GameObject:
   m_ObjectHideFlags: 0
