@@ -3,9 +3,8 @@ using UnityEngine;
 
 public class CookieAutoClick : MonoBehaviour
 {
-    public float autoClickInterval = 1.0f; // 자동 클릭 간격 (초 단위로 설정 가능)
-    private bool isAutoClicking = false; // 자동 클릭 활성화 여부
     private Cookie cookie; // Cookie 스크립트 참조
+    private Coroutine coroutine;
 
     private void Awake()
     {
@@ -13,44 +12,28 @@ public class CookieAutoClick : MonoBehaviour
         cookie = GetComponent<Cookie>();
     }
 
-    private void Start()
-    {
-        StartAutoClick(); // 스크립트 시작 시 자동 클릭 활성화
-    }
-
     public void StartAutoClick()
     {
-        if (!isAutoClicking)
+        if (coroutine == null)
         {
-            isAutoClicking = true;
-            StartCoroutine(AutoClickCoroutine());
+            coroutine = StartCoroutine(AutoClickCoroutine());
         }
     }
 
     public void StopAutoClick()
     {
-        if (isAutoClicking)
+        if (coroutine != null)
         {
-            isAutoClicking = false;
-            StopCoroutine(AutoClickCoroutine());
+            StopCoroutine(AutoClickCoroutine()); //실행중인 코루틴이 있는지 null 여부를 파악해서 관리
         }
     }
 
     private IEnumerator AutoClickCoroutine()
     {
-        while (isAutoClicking && autoClickInterval > 0)
+        while (GameManager.Instance.autoClickRate > 0)
         {
-            AutoClick();
-            yield return new WaitForSeconds(100 / autoClickInterval); // 지정된 간격으로 반복 실행
-        }
-    }
-
-    private void AutoClick()
-    {
-        // Cookie의 OnClick 메서드를 호출하여 클릭 동작 수행
-        if (cookie != null)
-        {
-            cookie.OnClick();
+            cookie.OnClick(GameManager.Instance.autoClickIncrease);
+            yield return new WaitForSeconds(10 / GameManager.Instance.autoClickRate); // 지정된 간격으로 반복 실행
         }
     }
 }

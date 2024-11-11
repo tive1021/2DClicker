@@ -8,6 +8,8 @@ public class GameManager : Singleton<GameManager>
 {
     public BigInteger money = 0;
     public BigInteger moneyIncrease = 1;
+    public float autoClickRate = 0;
+    public BigInteger autoClickIncrease = 1;
     public TextMeshProUGUI moneyValueLabel;
     public ParticleSystem _particleSystem;
 
@@ -19,14 +21,14 @@ public class GameManager : Singleton<GameManager>
 
     private void Update()
     {
-        moneyValueLabel.text = FormatBigInteger();
+        moneyValueLabel.text = FormatBigInteger(money);
     }
 
-    private string FormatBigInteger()
+    public string FormatBigInteger(BigInteger amount)
     {
         char format = 'a';
         format--;
-        BigInteger formatMoney = money;
+        BigInteger formatMoney = amount;
 
         while (formatMoney / 1000 > 0)
         {

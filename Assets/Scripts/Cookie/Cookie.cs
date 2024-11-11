@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -17,13 +18,21 @@ public class Cookie : MonoBehaviour
 
     public void OnClick()
     {
-        MoneyIncrease();
+        MoneyIncrease(GameManager.Instance.moneyIncrease);
 
         animator.SetTrigger("Click");
         PlayParticle();
     }
 
-    private void MoneyIncrease()
+    public void OnClick(BigInteger amount)
+    {
+        MoneyIncrease(amount);
+
+        animator.SetTrigger("Click");
+        PlayParticle();
+    }
+
+    private void MoneyIncrease(BigInteger amount)
     {
         GameManager.Instance.money += GameManager.Instance.moneyIncrease; // money 증가
     }
@@ -33,8 +42,8 @@ public class Cookie : MonoBehaviour
         ParticleSystem particleSystem = GameManager.Instance._particleSystem;
 
         // 파티클 시스템 랜덤 위치 설정
-        Vector2 randomInsideCircle = Random.insideUnitCircle * radius;
-        Vector3 position = new Vector3(randomInsideCircle.x, randomInsideCircle.y, 0f) + transform.position;
+        UnityEngine.Vector2 randomInsideCircle = Random.insideUnitCircle * radius;
+        UnityEngine.Vector3 position = new UnityEngine.Vector3(randomInsideCircle.x, randomInsideCircle.y, 0f) + transform.position;
         particleSystem.transform.position = position;
 
         // 파티클 효과 설정 및 재생
