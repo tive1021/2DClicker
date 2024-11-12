@@ -18,31 +18,45 @@ public class UpgradeCookie : MonoBehaviour
     public void Awake()
     {
         auto = GameObject.FindGameObjectWithTag("Cookie").GetComponent<CookieAutoClick>();
-        auto.StartAutoClick();
     }
 
     public void IncreaseClick()
     {
-        GameManager.Instance.moneyIncrease++;
-        increaseClickMoney += 100;
-        increaseClickText.text = $"{GameManager.Instance.FormatBigInteger(increaseClickMoney)}";
+        if (GameManager.Instance.money > increaseClickMoney)
+        {
+            GameManager.Instance.money -= increaseClickMoney;
+
+            GameManager.Instance.moneyIncrease++;
+            increaseClickMoney += 100;
+            increaseClickText.text = $"{GameManager.Instance.FormatBigInteger(increaseClickMoney)}";
+        }
     }
 
     public void AutoClickCooldown()
     {
-        auto.StopAutoClick();
-        GameManager.Instance.autoClickRate++;
-        auto.StartAutoClick();
-        autoClickCooldownMoney *= 1000;
-        autoClickCooldownText.text = $"{GameManager.Instance.FormatBigInteger(autoClickCooldownMoney)}";
+        if (GameManager.Instance.money > increaseClickMoney)
+        {
+            GameManager.Instance.money -= autoClickCooldownMoney;
+
+            auto.StopAutoClick();
+            GameManager.Instance.autoClickRate++;
+            auto.StartAutoClick();
+            autoClickCooldownMoney *= 1000;
+            autoClickCooldownText.text = $"{GameManager.Instance.FormatBigInteger(autoClickCooldownMoney)}";
+        }
     }
 
     public void IncreaseAutoClick()
     {
-        auto.StopAutoClick();
-        GameManager.Instance.autoClickIncrease++;
-        auto.StartAutoClick();
-        increaseAutoClickMoney += 1000;
-        increaseAutoClickText.text = $"{GameManager.Instance.FormatBigInteger(increaseAutoClickMoney)}";
+        if (GameManager.Instance.money > increaseClickMoney)
+        {
+            GameManager.Instance.money -= increaseAutoClickMoney;
+
+            auto.StopAutoClick();
+            GameManager.Instance.autoClickIncrease++;
+            auto.StartAutoClick();
+            increaseAutoClickMoney += 1000;
+            increaseAutoClickText.text = $"{GameManager.Instance.FormatBigInteger(increaseAutoClickMoney)}";
+        }
     }
 }

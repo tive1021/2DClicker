@@ -34,7 +34,7 @@ public class Cookie : MonoBehaviour
 
     private void MoneyIncrease(BigInteger amount)
     {
-        GameManager.Instance.money += GameManager.Instance.moneyIncrease; // money 증가
+        GameManager.Instance.money += amount; // money 증가
     }
 
     private void PlayParticle()

@@ -12,6 +12,11 @@ public class CookieAutoClick : MonoBehaviour
         cookie = GetComponent<Cookie>();
     }
 
+    private void Start()
+    {
+        StartAutoClick();
+    }
+
     public void StartAutoClick()
     {
         if (coroutine == null)
