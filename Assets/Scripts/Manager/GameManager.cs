@@ -48,10 +48,15 @@ public class GameManager : Singleton<GameManager>
                 demical = $"0{demical}";
                 break;
         }
-        
+
+        if (demical == "000")
+        {
+            demical = "";
+        }
+
         // 소수점 첫째 자리까지 포함한 최대 4자리 표현
         string result = $"{formatAmount}.{demical}";
-        result = result.Length > 4 ? result.Substring(0, 5) : result;
+        result = result.Length > 5 ? result.Substring(0, 5) : result;
 
         return $"{result}{format}";
     }
