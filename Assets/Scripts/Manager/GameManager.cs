@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Numerics;
 using TMPro;
 using UnityEngine;
@@ -22,20 +20,39 @@ public class GameManager : Singleton<GameManager>
     private void Update()
     {
         moneyValueLabel.text = FormatBigInteger(money);
-    }
+    }    
 
     public string FormatBigInteger(BigInteger amount)
     {
         char format = 'a';
         format--;
-        BigInteger formatMoney = amount;
+        BigInteger formatAmount = amount;
+        BigInteger demicalAmount = 0;
 
-        while (formatMoney / 1000 > 0)
+        // 천 단위로 나누면서 알파벳 포맷을 하나씩 증가
+        while (formatAmount >= 1000)
         {
-            formatMoney = formatMoney / 1000;
+            demicalAmount = formatAmount % 1000;
+            formatAmount /= 1000;
             format++;
         }
 
-        return $"{formatMoney}{format}";
+        string demical = demicalAmount.ToString();
+        
+        switch (demical.Length)
+        {
+            case 1:
+                demical = $"00{demical}";
+                break;
+            case 2:
+                demical = $"0{demical}";
+                break;
+        }
+        
+        // 소수점 첫째 자리까지 포함한 최대 4자리 표현
+        string result = $"{formatAmount}.{demical}";
+        result = result.Length > 4 ? result.Substring(0, 5) : result;
+
+        return $"{result}{format}";
     }
 }

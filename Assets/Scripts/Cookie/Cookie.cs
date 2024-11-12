@@ -1,10 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Numerics;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Cookie : MonoBehaviour
 {
